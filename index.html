@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0f1a14">
+  <title>Callbreak Score Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>♠ Call<span>break</span></h1>
+    <button class="btn ghost hidden" id="newBtn">New game</button>
+  </header>
+
+  <!-- SETUP SCREEN -->
+  <div id="setup" class="card">
+    <label class="l">Players</label>
+    <div class="names" id="nameInputs"></div>
+    <label class="l">Rounds</label>
+    <div class="opts" id="roundOpts"></div>
+    <div style="margin-top:12px"><button class="btn primary" style="width:100%" id="startBtn">Start game</button></div>
+    <div class="rule">Scoring: make your bid → bid + 0.1 per extra trick. Miss it, or win double your bid or more → minus your bid.<br><b>Blind</b> (bid 5+): make it → double the tricks won. Miss it → −5.</div>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="game" class="hidden">
+    <div class="card boardCard"><div id="board"></div></div>
+
+    <div class="side">
+
+    <div class="card" id="entry">
+      <div class="row" style="justify-content:space-between;margin-bottom:8px">
+        <b id="roundTitle">Round 1</b>
+        <button class="btn ghost hidden" id="undoBtn">Undo last round</button>
+      </div>
+      <div class="tabs"><button id="tBid" class="on">1. Bids</button><button id="tWon">2. Tricks won</button></div>
+      <div id="players" class="players"></div>
+      <div class="status" id="status"></div>
+      <button class="btn primary" style="width:100%" id="nextBtn">Next</button>
+    </div>
+
+    <div class="card hidden" id="done">
+      <div class="winner"><div style="color:var(--mute);font-size:13px">Winner</div><div class="big" id="winName"></div></div>
+      <div class="row" style="margin-top:10px"><button class="btn grow" id="undoBtn2">Undo last round</button><button class="btn primary grow" id="againBtn">Play again</button></div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRM DIALOG -->
+<div class="modal hidden" id="confirm">
+  <div class="card">
+    <div style="margin-bottom:14px">Start a new game? Current scores will be cleared.</div>
+    <div class="row"><button class="btn grow" id="cNo">Cancel</button><button class="btn primary grow" id="cYes">New game</button></div>
+  </div>
+</div>
+
+<!-- Order matters: logic first, then the app that uses it -->
+<script src="logic.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
